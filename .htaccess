@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    #RewiteBase /
+    RewriteCond  %{HTTP_ACCEPT}  version=(([0-9]+\.)+[0-9]+)
+    RewriteRule ^(.+)$ - [env=v:%1]
+    RewriteCond  %{HTTP_ACCEPT}  version=(([0-9]+\.)+[0-9]+)
+    RewriteRule  ^(.*)$   v%{ENV:v}/index.php?_url=/$1 [QSA,L]
+</IfModule>
+
